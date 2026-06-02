@@ -50,8 +50,8 @@ pipeline {
                     credentialsId: 'aws-credentials'
                 ]]) {
                     // This switches Jenkins context into your /terraform folder containing main.tf
-                    dir('terraform') { 
-                        echo "Initializing and Applying Terraform..."
+                    script { 
+                        echo "Initializing and Applying Terraform in root directory..."
                         sh 'terraform init'
                         // Passes the exact IMAGE_TAG from Jenkins straight into your Terraform variable
                         sh "terraform apply -var='image_tag=${IMAGE_TAG}' -auto-approve"
